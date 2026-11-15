@@ -83,4 +83,56 @@ test.describe('Syntecxhub Project 3 — Media Library & Asset Pipeline', () => {
       fullPage: true,
     });
   });
+
+  test('05 - Custom select dropdown displays theme-styled popover and active options', async ({ page }) => {
+    await page.goto('/media');
+    await page.waitForLoadState('networkidle');
+
+    // Click on custom select dropdown button
+    const selectTrigger = page.locator('button:has-text("All Image Formats")');
+    await expect(selectTrigger).toBeVisible();
+    await selectTrigger.click();
+    await page.waitForTimeout(300);
+
+    // Verify popover options list is visible
+    const option = page.locator('button:has-text("PNG Raster")');
+    await expect(option).toBeVisible();
+
+    // Capture screenshot with dropdown open
+    await page.screenshot({
+      path: path.join(screenshotsDir, '05-custom-select-dropdown-open.png'),
+    });
+
+    // Select PNG option
+    await option.click();
+    await page.waitForTimeout(300);
+    await expect(page.locator('button:has-text("PNG Raster")')).toBeVisible();
+  });
+
+  test('06 - Sidebar collapse & expand via Topbar and bottom rail toggle', async ({ page }) => {
+    await page.goto('/media');
+    await page.waitForLoadState('networkidle');
+
+    // Collapse via Topbar toggle button
+    const topbarToggle = page.locator('header button[aria-label="Toggle Sidebar Navigation"]');
+    await expect(topbarToggle).toBeVisible();
+    await topbarToggle.click();
+    await page.waitForTimeout(400);
+
+    // Verify sidebar is collapsed (w-20 class present on aside)
+    const aside = page.locator('aside');
+    await expect(aside).toHaveClass(/w-20/);
+
+    // Capture screenshot of shrunk sidebar
+    await page.screenshot({
+      path: path.join(screenshotsDir, '06-shrunk-sidebar.png'),
+    });
+
+    // Re-expand via rail toggle button at bottom
+    const railToggle = page.locator('aside button[aria-label="Toggle Sidebar Rail"]');
+    await expect(railToggle).toBeVisible();
+    await railToggle.click();
+    await page.waitForTimeout(400);
+    await expect(aside).toHaveClass(/w-64/);
+  });
 });

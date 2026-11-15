@@ -63,11 +63,12 @@ const toggleTheme = () => {
     <!-- Brand Header -->
     <div
       class="flex h-16 items-center border-b border-slate-200/90 dark:border-rose-950/60 transition-all duration-200"
-      :class="uiStore.sidebarCollapsed ? 'justify-center px-2 relative' : 'justify-between px-4'"
+      :class="uiStore.sidebarCollapsed ? 'justify-center px-2' : 'justify-between px-4'"
     >
       <NuxtLink
         to="/"
-        class="flex items-center gap-3 min-w-0"
+        class="flex items-center min-w-0"
+        :class="uiStore.sidebarCollapsed ? 'justify-center' : 'gap-3'"
         :title="uiStore.sidebarCollapsed ? 'Syntecxhub Studio (DAM)' : undefined"
       >
         <BrandProjectLogo :size="'md'" />
@@ -86,20 +87,16 @@ const toggleTheme = () => {
         </div>
       </NuxtLink>
 
-      <!-- Desktop Toggle Button -->
+      <!-- Desktop Collapse Button (Expanded State) -->
       <button
+        v-if="!uiStore.sidebarCollapsed"
         type="button"
-        class="hidden lg:inline-flex rounded-lg text-slate-400 hover:bg-slate-100 dark:hover:bg-rose-950/60 transition-all cursor-pointer"
-        :class="
-          uiStore.sidebarCollapsed
-            ? 'absolute -right-3 top-5 z-50 h-6 w-6 rounded-full border border-slate-200 dark:border-rose-900/80 bg-white dark:bg-[#150C22] shadow-md p-0 items-center justify-center text-slate-400 hover:text-white'
-            : 'p-1.5'
-        "
-        :title="uiStore.sidebarCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'"
+        class="hidden lg:inline-flex rounded-lg p-1.5 text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-rose-950/60 transition-all cursor-pointer"
+        title="Collapse Sidebar (Ctrl+B)"
+        aria-label="Collapse Sidebar"
         @click="uiStore.toggleSidebar"
       >
-        <PanelLeftOpen v-if="uiStore.sidebarCollapsed" class="h-3.5 w-3.5" />
-        <PanelLeftClose v-else class="h-4 w-4" />
+        <PanelLeftClose class="h-4 w-4" />
       </button>
 
       <!-- Mobile Close Button -->
@@ -158,6 +155,27 @@ const toggleTheme = () => {
         </div>
         <p class="text-[10px] text-slate-500 dark:text-rose-300/70 font-mono">12.4 MB of 100 MB used</p>
       </div>
+
+      <!-- Rail Expand / Collapse Toggle -->
+      <button
+        type="button"
+        class="flex items-center rounded-xl border border-slate-200 dark:border-rose-950/80 bg-white dark:bg-[#120A1D] font-medium text-slate-700 dark:text-slate-300 hover:border-rose-400 hover:text-rose-400 transition-colors cursor-pointer"
+        :class="
+          uiStore.sidebarCollapsed
+            ? 'w-12 h-10 mx-auto justify-center px-0'
+            : 'w-full justify-between px-3 py-2 text-xs'
+        "
+        :title="uiStore.sidebarCollapsed ? 'Expand Sidebar (Ctrl+B)' : 'Collapse Sidebar (Ctrl+B)'"
+        aria-label="Toggle Sidebar Rail"
+        @click="uiStore.toggleSidebar"
+      >
+        <span class="flex items-center gap-2">
+          <PanelLeftOpen v-if="uiStore.sidebarCollapsed" class="h-4 w-4 text-rose-400 shrink-0" />
+          <PanelLeftClose v-else class="h-4 w-4 shrink-0 text-slate-400" />
+          <span v-if="!uiStore.sidebarCollapsed">Collapse Sidebar</span>
+        </span>
+        <kbd v-if="!uiStore.sidebarCollapsed" class="hidden sm:inline font-mono text-[10px] text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-700">Ctrl+B</kbd>
+      </button>
 
       <button
         type="button"

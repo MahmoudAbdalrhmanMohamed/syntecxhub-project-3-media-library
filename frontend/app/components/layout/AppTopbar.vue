@@ -3,6 +3,8 @@ import {
   Bell,
   ChevronRight,
   Menu,
+  PanelLeftClose,
+  PanelLeftOpen,
   Search,
   UserCheck,
   ExternalLink,
@@ -63,14 +65,26 @@ const handleQuickSearch = () => {
     uploadsStore.fetchUploads();
   }
 };
+
+onMounted(() => {
+  const onKey = (e: KeyboardEvent) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'b') {
+      e.preventDefault();
+      uiStore.toggleSidebar();
+    }
+  };
+  window.addEventListener('keydown', onKey);
+  onUnmounted(() => window.removeEventListener('keydown', onKey));
+});
 </script>
 
 <template>
   <header
     class="sticky top-0 z-30 flex h-16 items-center justify-between gap-4 border-b border-slate-200/90 dark:border-rose-950/60 bg-white/90 dark:bg-[#0B0612]/90 px-4 sm:px-6 backdrop-blur-md"
   >
-    <!-- Left: Mobile Menu & Breadcrumbs -->
+    <!-- Left: Mobile Menu, Desktop Sidebar Toggle & Breadcrumbs -->
     <div class="flex items-center gap-3 min-w-0">
+      <!-- Mobile Menu Button -->
       <button
         type="button"
         class="lg:hidden rounded-lg border border-slate-200 dark:border-slate-800 p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
@@ -78,6 +92,18 @@ const handleQuickSearch = () => {
         @click="uiStore.openMobileSidebar"
       >
         <Menu class="h-4 w-4" />
+      </button>
+
+      <!-- Desktop Sidebar Toggle Button -->
+      <button
+        type="button"
+        class="hidden lg:inline-flex items-center justify-center rounded-xl border border-slate-200/90 dark:border-rose-950/80 bg-white/70 dark:bg-[#150C22]/80 p-2 text-slate-500 dark:text-slate-400 hover:text-rose-400 hover:border-rose-500/50 hover:bg-rose-50/50 dark:hover:bg-rose-950/40 transition-all cursor-pointer shadow-xs"
+        :title="uiStore.sidebarCollapsed ? 'Expand Sidebar (Ctrl+B)' : 'Collapse Sidebar (Ctrl+B)'"
+        aria-label="Toggle Sidebar Navigation"
+        @click="uiStore.toggleSidebar"
+      >
+        <PanelLeftOpen v-if="uiStore.sidebarCollapsed" class="h-4 w-4 text-rose-400" />
+        <PanelLeftClose v-else class="h-4 w-4" />
       </button>
 
       <div class="min-w-0">
