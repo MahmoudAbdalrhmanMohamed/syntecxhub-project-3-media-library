@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
+dist/
+**/dist/
+.nuxt/
+**/.nuxt/
+.output/
+**/.output/
+coverage/
+**/coverage/
+
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+!**/.env.example
+
+# Logs & OS artifacts
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
