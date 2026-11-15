@@ -57,7 +57,7 @@ export default defineNuxtConfig({
     public: {
       apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL || 'http://localhost:4000/api',
       backendOrigin: process.env.NUXT_PUBLIC_BACKEND_ORIGIN || 'http://localhost:4000',
-      appName: 'Syntecxhub Control Plane',
+      appName: 'Syntecxhub Studio',
       appVersion: '1.0.0',
     },
   },
@@ -67,19 +67,21 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'en',
       },
-      titleTemplate: '%s — Syntecxhub Enterprise Platform',
-      title: 'Executive Overview',
+      titleTemplate: '%s — Syntecxhub Studio',
+      title: 'Creative DAM & Digital Asset Pipeline',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         {
           name: 'description',
           content:
-            'Syntecxhub Enterprise Administration & Resource Management Platform — User Directory, Hardware & Software Inventory, Media Asset Pipeline, and Executive Telemetry.',
+            'Syntecxhub Studio — Creative Digital Asset Management, SVG Vector Rendering & High-Speed Media Pipeline.',
         },
-        { name: 'theme-color', content: '#090D16' },
+        { name: 'theme-color', content: '#0B0612' },
       ],
       link: [
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'alternate icon', href: '/favicon.ico' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         {
           rel: 'preconnect',
