@@ -402,55 +402,75 @@ const handleDeleteAsset = async (record: UploadRecord) => {
             />
           </div>
 
-          <div class="space-y-2.5 text-xs">
+          <!-- Live Creative Asset Inspector Details -->
+          <div class="space-y-3.5 text-xs">
             <div>
-              <span class="text-slate-400 block text-[11px]">Original Filename</span>
-              <span class="font-semibold text-slate-900 dark:text-white break-all">
+              <span class="text-rose-400/80 block text-[10px] uppercase font-bold tracking-wider mb-0.5">Asset Title</span>
+              <span class="font-semibold text-slate-900 dark:text-white break-all text-sm">
                 {{ uploadsStore.selectedFile.originalName }}
               </span>
             </div>
-            <div>
-              <span class="text-slate-400 block text-[11px]">Stored Filename</span>
-              <span class="font-mono text-slate-700 dark:text-slate-300 break-all">
-                {{ uploadsStore.selectedFile.storedName }}
+
+            <!-- Creative Palette Swatches -->
+            <div class="rounded-xl border border-rose-950/60 bg-[#0B0612]/90 p-3 space-y-2">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-rose-300/80 flex items-center justify-between">
+                <span>Color Palette Extraction</span>
+                <span class="text-[9px] text-slate-400 font-normal">Click to copy hex</span>
               </span>
+              <div class="flex items-center gap-1.5 pt-0.5">
+                <button
+                  v-for="color in ['#FB7185', '#E11D48', '#9F1239', '#D946EF', '#86198F', '#1E1B4B']"
+                  :key="color"
+                  type="button"
+                  class="h-6 flex-1 rounded-md border border-white/10 hover:scale-110 transition-transform cursor-pointer shadow-sm relative group/c"
+                  :style="{ backgroundColor: color }"
+                  :title="`Copy ${color}`"
+                  @click="copy(color); toast.success('Copied Hex', color)"
+                >
+                  <span class="sr-only">{{ color }}</span>
+                </button>
+              </div>
             </div>
+
             <div class="grid grid-cols-2 gap-2 pt-1">
-              <div class="rounded-lg bg-slate-50 dark:bg-slate-950 p-2.5 border border-slate-200 dark:border-slate-800">
-                <span class="text-slate-400 block text-[10px]">File Size</span>
-                <span class="font-mono font-semibold text-slate-900 dark:text-white">
+              <div class="rounded-lg bg-slate-50 dark:bg-[#0B0612] p-2.5 border border-slate-200 dark:border-rose-950/60">
+                <span class="text-slate-400 block text-[10px] uppercase font-bold">Storage Size</span>
+                <span class="font-mono font-bold text-rose-400 text-xs">
                   {{ formatBytes(uploadsStore.selectedFile.size) }}
                 </span>
               </div>
-              <div class="rounded-lg bg-slate-50 dark:bg-slate-950 p-2.5 border border-slate-200 dark:border-slate-800">
-                <span class="text-slate-400 block text-[10px]">Uploaded</span>
+              <div class="rounded-lg bg-slate-50 dark:bg-[#0B0612] p-2.5 border border-slate-200 dark:border-rose-950/60">
+                <span class="text-slate-400 block text-[10px] uppercase font-bold">Indexed Date</span>
                 <span class="font-mono text-[11px] text-slate-900 dark:text-white">
                   {{ formatDateTime(uploadsStore.selectedFile.uploadDate) }}
                 </span>
               </div>
             </div>
-            <div>
-              <span class="text-slate-400 block text-[11px]">Server File Path</span>
-              <span class="font-mono text-[11px] text-slate-600 dark:text-slate-400 break-all">
-                {{ uploadsStore.selectedFile.filePath }}
-              </span>
-            </div>
-            <div>
-              <span class="text-slate-400 block text-[11px] mb-1">Public URL</span>
-              <div class="flex items-center gap-1.5">
-                <input
-                  :value="resolveAssetUrl(uploadsStore.selectedFile.publicUrl)"
-                  readonly
-                  class="input-field font-mono text-[11px] py-1.5"
-                />
+
+            <!-- CDN Embed Snippets -->
+            <div class="space-y-1.5 pt-1">
+              <span class="text-slate-400 block text-[10px] uppercase font-bold">Embed Snippets</span>
+              <div class="grid grid-cols-3 gap-1.5">
                 <button
                   type="button"
-                  class="btn-secondary px-2.5 py-1.5 shrink-0"
-                  title="Copy Public URL"
-                  @click="handleCopyUrl(uploadsStore.selectedFile.publicUrl)"
+                  class="rounded-lg border border-slate-200 dark:border-rose-950/80 bg-slate-50 dark:bg-[#0B0612] p-2 text-center text-[10px] font-semibold text-slate-700 dark:text-slate-300 hover:border-rose-500 hover:text-rose-400 transition-colors"
+                  @click="copy(resolveAssetUrl(uploadsStore.selectedFile.publicUrl)); toast.success('Copied CDN URL', 'Direct link in clipboard')"
                 >
-                  <Check v-if="copied" class="h-4 w-4 text-emerald-500" />
-                  <Copy v-else class="h-4 w-4" />
+                  Direct URL
+                </button>
+                <button
+                  type="button"
+                  class="rounded-lg border border-slate-200 dark:border-rose-950/80 bg-slate-50 dark:bg-[#0B0612] p-2 text-center text-[10px] font-semibold text-slate-700 dark:text-slate-300 hover:border-rose-500 hover:text-rose-400 transition-colors"
+                  @click="copy(`<img src=\x22${resolveAssetUrl(uploadsStore.selectedFile.publicUrl)}\x22 alt=\x22${uploadsStore.selectedFile.originalName}\x22 />`); toast.success('Copied HTML tag', 'HTML <img> tag in clipboard')"
+                >
+                  HTML Tag
+                </button>
+                <button
+                  type="button"
+                  class="rounded-lg border border-slate-200 dark:border-rose-950/80 bg-slate-50 dark:bg-[#0B0612] p-2 text-center text-[10px] font-semibold text-slate-700 dark:text-slate-300 hover:border-rose-500 hover:text-rose-400 transition-colors"
+                  @click="copy(`![${uploadsStore.selectedFile.originalName}](${resolveAssetUrl(uploadsStore.selectedFile.publicUrl)})`); toast.success('Copied Markdown', 'Markdown embed in clipboard')"
+                >
+                  Markdown
                 </button>
               </div>
             </div>
