@@ -77,9 +77,41 @@ export default defineNuxtConfig({
           content:
             'Syntecxhub Studio — Creative Digital Asset Management, SVG Vector Rendering & High-Speed Media Pipeline.',
         },
+        { name: 'keywords', content: 'Creative DAM, Digital Asset Management, SVG Vector Rendering, Media Pipeline, High-Speed Asset Vault, NestJS Media API, Nuxt 4' },
+        { name: 'author', content: 'Syntecxhub Enterprise' },
+        { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
         { name: 'theme-color', content: '#0B0612' },
+
+        // Google Search Console & Webmaster Verification
+        { name: 'google-site-verification', content: process.env.NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'syntecxhub-studio-gsc-verification-token' },
+        { name: 'msvalidate.01', content: process.env.NUXT_PUBLIC_BING_SITE_VERIFICATION || 'syntecxhub-studio-bing-verification-token' },
+        { name: 'yandex-verification', content: process.env.NUXT_PUBLIC_YANDEX_SITE_VERIFICATION || 'syntecxhub-studio-yandex-verification-token' },
+
+        // Geographic (GEO) Meta Tags
+        { name: 'geo.region', content: 'US-CA' },
+        { name: 'geo.placename', content: 'San Francisco' },
+        { name: 'geo.position', content: '37.7749;-122.4194' },
+        { name: 'ICBM', content: '37.7749, -122.4194' },
+
+        // OpenGraph (SEO / Social)
+        { property: 'og:type', content: 'website' },
+        { property: 'og:site_name', content: 'Syntecxhub Studio' },
+        { property: 'og:title', content: 'Syntecxhub Studio — Creative DAM & Digital Asset Pipeline' },
+        { property: 'og:description', content: 'High-speed creative media vault, SVG vector inspection, MIME validation pipeline, and disk quota governance.' },
+        { property: 'og:url', content: 'https://studio.syntecxhub.com/' },
+        { property: 'og:image', content: 'https://studio.syntecxhub.com/favicon.svg' },
+        { property: 'og:locale', content: 'en_US' },
+
+        // Twitter Card (SEO / Social)
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:site', content: '@syntecxhub' },
+        { name: 'twitter:creator', content: '@syntecxhub' },
+        { name: 'twitter:title', content: 'Syntecxhub Studio — Creative DAM & Asset Engine' },
+        { name: 'twitter:description', content: 'High-speed SVG vector and media asset management pipeline.' },
+        { name: 'twitter:image', content: 'https://studio.syntecxhub.com/favicon.svg' },
       ],
       link: [
+        { rel: 'canonical', href: 'https://studio.syntecxhub.com/' },
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'alternate icon', href: '/favicon.ico' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },

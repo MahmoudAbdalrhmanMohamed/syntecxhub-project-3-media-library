@@ -1,0 +1,23 @@
+# Syntecxhub Studio
+
+> Creative Digital Asset Management & Vector Asset Pipeline.
+
+## Overview
+Syntecxhub Studio is a next-generation Creative Digital Asset Management (DAM) platform engineered with Nuxt 4 (SSR Nitro) and NestJS (Mongoose/MongoDB). It provides high-speed vector inspection, MIME validation pipelines, drag-and-drop batch ingestion, and storage quota governance.
+
+## Core Capabilities
+- **Creative Media Asset Vault**: Instant gallery view with split metadata inspector and copyable CDN URLs.
+- **SVG & Vector Processing**: Native rendering and inspection of SVG vectors alongside PNG, JPEG, WebP, and GIF.
+- **MIME & Storage Telemetry**: Real-time disk quota utilization metering, per-format distribution, and multi-file batch uploads.
+- **OpenAPI Architecture**: Standardized RESTful endpoints documented via Swagger / OpenAPI at `/api-docs`.
+
+## Key URLs
+- Homepage / Dashboard: https://studio.syntecxhub.com/
+- Media Vault & Gallery: https://studio.syntecxhub.com/media
+- Storage Preferences: https://studio.syntecxhub.com/settings
+- OpenAPI Explorer: https://studio.syntecxhub.com/api-docs
+
+## Technical Stack
+- Frontend: Nuxt 4.6, Vue 3.5, Tailwind CSS, Pinia
+- Backend: NestJS 11, MongoDB 8, TypeScript
+- Storage: Persistent disk storage with MongoDB metadata indexing and static asset serving
