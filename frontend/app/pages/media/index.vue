@@ -306,20 +306,22 @@ const handleDeleteAsset = async (record: UploadRecord) => {
               @input="debouncedSearch"
             />
           </div>
-          <select
+          <UiCustomSelect
             v-model="uploadsStore.filters.mimeType"
-            class="input-field sm:w-48"
+            :options="[
+              { label: 'All Image Formats', value: '' },
+              { label: 'SVG Vector (image/svg+xml)', value: 'image/svg+xml' },
+              { label: 'PNG Raster (image/png)', value: 'image/png' },
+              { label: 'JPEG Photo (image/jpeg)', value: 'image/jpeg' },
+              { label: 'WebP Optimized (image/webp)', value: 'image/webp' },
+            ]"
+            class="w-full sm:w-56"
+            theme="rose"
             @change="
               uploadsStore.filters.page = 1;
               uploadsStore.fetchUploads();
             "
-          >
-            <option value="">All Image Formats</option>
-            <option value="image/svg+xml">SVG Vector (image/svg+xml)</option>
-            <option value="image/png">PNG (image/png)</option>
-            <option value="image/jpeg">JPEG (image/jpeg)</option>
-            <option value="image/webp">WebP (image/webp)</option>
-          </select>
+          />
         </div>
 
         <div v-if="uploadsStore.loading" class="surface-card p-6">

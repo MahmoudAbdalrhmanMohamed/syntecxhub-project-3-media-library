@@ -6,7 +6,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex items-center gap-3">
+  <div class="flex items-center" :class="showText ? 'gap-3' : ''">
     <!-- Aperture Prism Iris Emblem -->
     <div
       class="relative shrink-0 flex items-center justify-center rounded-xl bg-gradient-to-br from-rose-500/20 via-fuchsia-950/40 to-slate-950 border border-rose-500/40 shadow-lg shadow-rose-500/20 overflow-hidden"
