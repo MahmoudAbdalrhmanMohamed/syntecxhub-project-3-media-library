@@ -45,6 +45,11 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
+  devServer: {
+    port: 3003,
+    host: '0.0.0.0',
+  },
+
   colorMode: {
     classSuffix: '',
     preference: 'dark',
@@ -55,8 +60,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     internalApiSecret: process.env.NUXT_INTERNAL_API_SECRET || 'syntecxhub-internal-ssr-key',
     public: {
-      apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL || 'http://localhost:4000/api',
-      backendOrigin: process.env.NUXT_PUBLIC_BACKEND_ORIGIN || 'http://localhost:4000',
+      apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL || 'http://localhost:4003/api',
+      backendOrigin: process.env.NUXT_PUBLIC_BACKEND_ORIGIN || 'http://localhost:4003',
       appName: 'Syntecxhub Studio',
       appVersion: '1.0.0',
     },
@@ -72,6 +77,7 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'referrer', content: 'strict-origin-when-cross-origin' },
         {
           name: 'description',
           content:
@@ -134,6 +140,12 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
+    '/**': {
+      headers: {
+        'Referrer-Policy': 'strict-origin-when-cross-origin',
+        'X-Content-Type-Options': 'nosniff',
+      },
+    },
     '/': { ssr: true },
     '/users': { ssr: true },
     '/products': { ssr: true },

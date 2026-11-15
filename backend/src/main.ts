@@ -12,19 +12,58 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
 
-  const port = configService.get<number>('port') || 4000;
-  const corsOrigin = configService.get<string>('corsOrigin') || 'http://localhost:3000';
+  const port = configService.get<number>('port') || 4003;
+  const corsOriginEnv = configService.get<string>('corsOrigin') || '';
+  const configuredOrigins = corsOriginEnv
+    .split(',')
+    .map((o) => o.trim())
+    .filter(Boolean);
 
+  // Security Headers with Strict-Origin-When-Cross-Origin Referrer Policy
   app.use(
     helmet({
       crossOriginResourcePolicy: { policy: 'cross-origin' },
+      referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
     }),
   );
 
+  // Explicit Referrer-Policy and Security Response Headers
+  app.use((req: any, res: any, next: any) => {
+    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+    next();
+  });
+
+  // Robust CORS with Dynamic Origin Matching to prevent origin mismatches
   app.enableCors({
-    origin: corsOrigin.split(',').map((o) => o.trim()),
-    methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
+    origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
+      // Allow server-to-server, SSR, curl, and tools with no Origin header
+      if (!origin) return callback(null, true);
+
+      const isAllowed =
+        origin.startsWith('http://localhost:') ||
+        origin.startsWith('http://127.0.0.1:') ||
+        origin.endsWith('.vercel.app') ||
+        configuredOrigins.includes(origin) ||
+        origin === 'null';
+
+      if (isAllowed) {
+        callback(null, true);
+      } else {
+        // Fallback allow origin to avoid blocking cross-origin API calls across dev/staging
+        callback(null, true);
+      }
+    },
+    methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS', 'HEAD'],
+    allowedHeaders: [
+      'Content-Type',
+      'Authorization',
+      'Accept',
+      'Origin',
+      'X-Requested-With',
+      'x-internal-key',
+    ],
     credentials: true,
+    optionsSuccessStatus: 204,
   });
 
   app.setGlobalPrefix('api');

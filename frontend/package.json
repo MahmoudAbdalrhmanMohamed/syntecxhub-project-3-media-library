@@ -6,9 +6,9 @@
   "description": "Syntecxhub Project 3 \u2014 Media Asset Library & Upload Pipeline - Nuxt 4 SSR Frontend",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --port 3000",
+    "dev": "nuxt dev --port 3003",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
+    "preview": "nuxt preview --port 3003",
     "postinstall": "nuxt prepare",
     "typecheck": "nuxt typecheck",
     "lint": "eslint .",
