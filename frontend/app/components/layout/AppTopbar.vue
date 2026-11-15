@@ -67,7 +67,7 @@ const handleQuickSearch = () => {
 
 <template>
   <header
-    class="sticky top-0 z-30 flex h-16 items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800/90 bg-white/90 dark:bg-slate-925/90 px-4 sm:px-6 backdrop-blur-md"
+    class="sticky top-0 z-30 flex h-16 items-center justify-between gap-4 border-b border-slate-200/90 dark:border-rose-950/60 bg-white/90 dark:bg-[#0B0612]/90 px-4 sm:px-6 backdrop-blur-md"
   >
     <!-- Left: Mobile Menu & Breadcrumbs -->
     <div class="flex items-center gap-3 min-w-0">
@@ -111,7 +111,7 @@ const handleQuickSearch = () => {
           v-model="quickSearch"
           type="search"
           placeholder="Search users or SKU (Enter)..."
-          class="w-full rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 pl-9 pr-3 py-1.5 text-xs text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:border-sky-500 focus:outline-none"
+          class="w-full rounded-xl border border-slate-200 dark:border-rose-950/80 bg-slate-50 dark:bg-[#120A1D] pl-9 pr-3 py-1.5 text-xs text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:border-rose-500 focus:outline-none"
         />
       </form>
 
@@ -119,13 +119,13 @@ const handleQuickSearch = () => {
       <div ref="notifRef" class="relative">
         <button
           type="button"
-          class="relative rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+          class="relative rounded-xl border border-slate-200 dark:border-rose-950/80 bg-white dark:bg-[#120A1D] p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-rose-950/40"
           aria-label="Platform Notifications"
           @click="showNotifications = !showNotifications"
         >
           <Bell class="h-4 w-4" />
           <span
-            class="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-sky-500 ring-2 ring-white dark:ring-slate-900"
+            class="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-rose-500 ring-2 ring-white dark:ring-[#0B0612]"
           />
         </button>
 

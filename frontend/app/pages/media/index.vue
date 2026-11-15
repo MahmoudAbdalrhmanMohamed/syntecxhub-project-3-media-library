@@ -173,11 +173,11 @@ const handleDeleteAsset = async (record: UploadRecord) => {
 
     <!-- Drag & Drop Zone -->
     <div
-      class="surface-card border-2 border-dashed p-6 sm:p-8 text-center transition-colors cursor-pointer"
+      class="surface-card border-2 border-dashed p-6 sm:p-8 text-center transition-all cursor-pointer"
       :class="
         isDragging
-          ? 'border-sky-500 bg-sky-500/5'
-          : 'border-slate-300 dark:border-slate-800 hover:border-sky-500/50'
+          ? 'border-rose-500 bg-rose-500/10 shadow-lg shadow-rose-500/20'
+          : 'border-slate-300 dark:border-rose-950/60 hover:border-rose-500/60 hover:bg-rose-500/5'
       "
       @dragover.prevent="isDragging = true"
       @dragleave.prevent="isDragging = false"
@@ -185,7 +185,7 @@ const handleDeleteAsset = async (record: UploadRecord) => {
       @click="fileInputRef?.click()"
     >
       <div
-        class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-500/10 text-sky-500 border border-sky-500/20"
+        class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-rose-500/20 to-fuchsia-500/20 text-rose-500 border border-rose-500/30 shadow-md shadow-rose-500/10"
       >
         <UploadCloud class="h-6 w-6" />
       </div>
@@ -239,7 +239,7 @@ const handleDeleteAsset = async (record: UploadRecord) => {
         class="h-2 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800"
       >
         <div
-          class="h-full bg-sky-500 transition-all duration-200"
+          class="h-full bg-gradient-to-r from-rose-500 to-fuchsia-500 transition-all duration-200"
           :style="{ width: `${uploadsStore.uploadProgress}%` }"
         />
       </div>
@@ -340,8 +340,8 @@ const handleDeleteAsset = async (record: UploadRecord) => {
             class="surface-card overflow-hidden cursor-pointer transition-all"
             :class="
               uploadsStore.selectedFile?._id === asset._id
-                ? 'ring-2 ring-sky-500 border-sky-500'
-                : 'hover:border-slate-400 dark:hover:border-slate-700'
+                ? 'ring-2 ring-rose-500 border-rose-500 shadow-md shadow-rose-500/20'
+                : 'hover:border-rose-500/40 dark:hover:border-rose-800/60'
             "
             @click="uploadsStore.selectedFile = asset"
           >
@@ -387,7 +387,7 @@ const handleDeleteAsset = async (record: UploadRecord) => {
             <h3 class="text-sm font-bold text-slate-900 dark:text-white">
               Asset Metadata Inspector
             </h3>
-            <span class="rounded bg-sky-500/10 px-2 py-0.5 font-mono text-[10px] text-sky-500">
+            <span class="rounded bg-rose-500/10 px-2 py-0.5 font-mono text-[10px] text-rose-400 border border-rose-500/20">
               {{ uploadsStore.selectedFile.mimeType }}
             </span>
           </div>
