@@ -171,7 +171,7 @@ onMounted(() => {
               Live Feed
             </span>
           </div>
-          <div class="max-h-72 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800/70">
+          <div class="max-h-72 overflow-y-auto custom-scrollbar divide-y divide-slate-100 dark:divide-slate-800/70">
             <div
               v-for="ev in dashboardStore.activity.slice(0, 5)"
               :key="ev.id"

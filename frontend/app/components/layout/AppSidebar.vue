@@ -136,7 +136,7 @@ const toggleTheme = () => {
     </div>
 
     <!-- Navigation List (Creative Studio Style) -->
-    <nav class="flex-1 space-y-6 overflow-y-auto px-3 py-4">
+    <nav class="flex-1 space-y-6 overflow-y-auto custom-scrollbar px-3 py-4">
       <div v-for="group in studioChannels" :key="group.channelName" class="space-y-1">
         <div
           v-if="!uiStore.sidebarCollapsed"

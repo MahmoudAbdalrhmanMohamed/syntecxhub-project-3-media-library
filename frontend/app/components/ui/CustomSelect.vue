@@ -182,7 +182,7 @@ const themeClasses = computed(() => {
     >
       <div
         v-if="isOpen"
-        class="absolute left-0 right-0 z-50 mt-1.5 min-w-[200px] origin-top rounded-xl border border-slate-200 dark:border-rose-950/80 bg-white/95 dark:bg-[#120A1D]/95 p-1.5 shadow-2xl backdrop-blur-xl max-h-64 overflow-y-auto"
+        class="absolute left-0 right-0 z-50 mt-1.5 min-w-[200px] origin-top rounded-xl border border-slate-200 dark:border-rose-950/80 bg-white/95 dark:bg-[#120A1D]/95 p-1.5 shadow-2xl backdrop-blur-xl max-h-64 overflow-y-auto custom-scrollbar"
       >
         <!-- Search bar if > 6 options or searchable -->
         <div

@@ -244,7 +244,7 @@ const handleCopyUrl = async (url: string) => {
           <span class="h-2 w-2 rounded-full bg-rose-400 animate-pulse" />
         </div>
 
-        <div class="mt-4 flex-1 space-y-3.5 overflow-y-auto max-h-[500px]">
+        <div class="mt-4 flex-1 space-y-3.5 overflow-y-auto custom-scrollbar pr-1.5 max-h-[500px]">
           <div
             v-for="(event, idx) in (dashboardStore.activity ?? [])"
             :key="idx"
