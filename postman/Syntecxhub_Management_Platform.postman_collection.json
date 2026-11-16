@@ -1,8 +1,8 @@
 {
   "info": {
     "_postman_id": "9f8c7b6a-5d4e-4f3a-8b2c-1e0d9c8b7a6f",
-    "name": "Syntecxhub Enterprise Management Platform API",
-    "description": "Complete Postman API Collection for the Syntecxhub Full-Stack Management Platform (Dashboard, Users, Products, and Media Uploads).",
+    "name": "Multi-Project Enterprise Suite API (Aegis, Titan, Prism)",
+    "description": "Complete Postman API Collection for the Multi-Project Enterprise Suite (Dashboard, Users, Products, and Media Uploads).",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -169,7 +169,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"fullName\": \"Amira El-Sayed\",\n  \"email\": \"amira.elsayed@syntecxhub.io\",\n  \"phoneNumber\": \"+20 100 741 8829\",\n  \"role\": \"manager\",\n  \"status\": \"active\",\n  \"department\": \"Cloud Engineering\",\n  \"jobTitle\": \"Engineering Manager\"\n}"
+              "raw": "{\n  \"fullName\": \"Amira El-Sayed\",\n  \"email\": \"amira.elsayed@aegisauth.io\",\n  \"phoneNumber\": \"+20 100 741 8829\",\n  \"role\": \"manager\",\n  \"status\": \"active\",\n  \"department\": \"Cloud Engineering\",\n  \"jobTitle\": \"Engineering Manager\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/users",
@@ -350,7 +350,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Syntecx Quantum Firewall QX-500\",\n  \"sku\": \"SYN-SEC-9500\",\n  \"price\": 3290.0,\n  \"description\": \"Next-generation zero-trust perimeter firewall with 40GbE throughput and hardware TLS 1.3 inspection.\",\n  \"category\": \"Security Appliances\",\n  \"image\": \"http://localhost:4000/uploads/product-zero-trust-hsm.svg\",\n  \"stockQuantity\": 16\n}"
+              "raw": "{\n  \"name\": \"Titan Quantum Firewall QX-500\",\n  \"sku\": \"SYN-SEC-9500\",\n  \"price\": 3290.0,\n  \"description\": \"Next-generation zero-trust perimeter firewall with 40GbE throughput and hardware TLS 1.3 inspection.\",\n  \"category\": \"Security Appliances\",\n  \"image\": \"http://localhost:4000/uploads/product-zero-trust-hsm.svg\",\n  \"stockQuantity\": 16\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/products",

@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Syntecxhub Project 3 \u2014 Media Asset Library & Upload Pipeline - Nuxt 4 SSR Frontend",
+  "description": "Prism Studio — Creative Digital Asset Management & High-Speed Media Pipeline - Nuxt 4 SSR Frontend",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev --port 3003",

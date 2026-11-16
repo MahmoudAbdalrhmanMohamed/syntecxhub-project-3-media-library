@@ -54,15 +54,15 @@ export default defineNuxtConfig({
     classSuffix: '',
     preference: 'dark',
     fallback: 'dark',
-    storageKey: 'syntecxhub-color-mode',
+    storageKey: 'prism-color-mode',
   },
 
   runtimeConfig: {
-    internalApiSecret: process.env.NUXT_INTERNAL_API_SECRET || 'syntecxhub-internal-ssr-key',
+    internalApiSecret: process.env.NUXT_INTERNAL_API_SECRET || 'prism-internal-ssr-key',
     public: {
       apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL || 'http://localhost:4003/api',
       backendOrigin: process.env.NUXT_PUBLIC_BACKEND_ORIGIN || 'http://localhost:4003',
-      appName: 'Syntecxhub Studio',
+      appName: 'Prism Studio',
       appVersion: '1.0.0',
     },
   },
@@ -72,7 +72,7 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'en',
       },
-      titleTemplate: '%s — Syntecxhub Studio',
+      titleTemplate: '%s — Prism Studio',
       title: 'Creative DAM & Digital Asset Pipeline',
       meta: [
         { charset: 'utf-8' },
@@ -81,17 +81,17 @@ export default defineNuxtConfig({
         {
           name: 'description',
           content:
-            'Syntecxhub Studio — Creative Digital Asset Management, SVG Vector Rendering & High-Speed Media Pipeline.',
+            'Prism Studio — Creative Digital Asset Management, SVG Vector Rendering & High-Speed Media Pipeline.',
         },
         { name: 'keywords', content: 'Creative DAM, Digital Asset Management, SVG Vector Rendering, Media Pipeline, High-Speed Asset Vault, NestJS Media API, Nuxt 4' },
-        { name: 'author', content: 'Syntecxhub Enterprise' },
+        { name: 'author', content: 'Prism Creative Systems' },
         { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
         { name: 'theme-color', content: '#0B0612' },
 
         // Google Search Console & Webmaster Verification
-        { name: 'google-site-verification', content: process.env.NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'syntecxhub-studio-gsc-verification-token' },
-        { name: 'msvalidate.01', content: process.env.NUXT_PUBLIC_BING_SITE_VERIFICATION || 'syntecxhub-studio-bing-verification-token' },
-        { name: 'yandex-verification', content: process.env.NUXT_PUBLIC_YANDEX_SITE_VERIFICATION || 'syntecxhub-studio-yandex-verification-token' },
+        { name: 'google-site-verification', content: process.env.NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'prism-studio-gsc-verification-token' },
+        { name: 'msvalidate.01', content: process.env.NUXT_PUBLIC_BING_SITE_VERIFICATION || 'prism-studio-bing-verification-token' },
+        { name: 'yandex-verification', content: process.env.NUXT_PUBLIC_YANDEX_SITE_VERIFICATION || 'prism-studio-yandex-verification-token' },
 
         // Geographic (GEO) Meta Tags
         { name: 'geo.region', content: 'US-CA' },
@@ -101,23 +101,23 @@ export default defineNuxtConfig({
 
         // OpenGraph (SEO / Social)
         { property: 'og:type', content: 'website' },
-        { property: 'og:site_name', content: 'Syntecxhub Studio' },
-        { property: 'og:title', content: 'Syntecxhub Studio — Creative DAM & Digital Asset Pipeline' },
+        { property: 'og:site_name', content: 'Prism Studio' },
+        { property: 'og:title', content: 'Prism Studio — Creative DAM & Digital Asset Pipeline' },
         { property: 'og:description', content: 'High-speed creative media vault, SVG vector inspection, MIME validation pipeline, and disk quota governance.' },
-        { property: 'og:url', content: 'https://studio.syntecxhub.com/' },
-        { property: 'og:image', content: 'https://studio.syntecxhub.com/favicon.svg' },
+        { property: 'og:url', content: 'https://studio.prismdam.io/' },
+        { property: 'og:image', content: 'https://studio.prismdam.io/favicon.svg' },
         { property: 'og:locale', content: 'en_US' },
 
         // Twitter Card (SEO / Social)
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:site', content: '@syntecxhub' },
-        { name: 'twitter:creator', content: '@syntecxhub' },
-        { name: 'twitter:title', content: 'Syntecxhub Studio — Creative DAM & Asset Engine' },
+        { name: 'twitter:site', content: '@prismdam' },
+        { name: 'twitter:creator', content: '@prismdam' },
+        { name: 'twitter:title', content: 'Prism Studio — Creative DAM & Asset Engine' },
         { name: 'twitter:description', content: 'High-speed SVG vector and media asset management pipeline.' },
-        { name: 'twitter:image', content: 'https://studio.syntecxhub.com/favicon.svg' },
+        { name: 'twitter:image', content: 'https://studio.prismdam.io/favicon.svg' },
       ],
       link: [
-        { rel: 'canonical', href: 'https://studio.syntecxhub.com/' },
+        { rel: 'canonical', href: 'https://studio.prismdam.io/' },
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'alternate icon', href: '/favicon.ico' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },

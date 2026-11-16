@@ -1,7 +1,7 @@
 {
   "name": "syntecxhub-project-3-media-library-backend",
   "version": "1.0.0",
-  "description": "Syntecxhub Project 3 \u2014 Media Asset Library & Upload Pipeline - NestJS & MongoDB Backend API",
+  "description": "Prism Studio — Creative Digital Asset Management & High-Speed Media Pipeline - NestJS & MongoDB Backend API",
   "author": "Mahmoud Abdalrahman Mohamed",
   "private": true,
   "license": "MIT",

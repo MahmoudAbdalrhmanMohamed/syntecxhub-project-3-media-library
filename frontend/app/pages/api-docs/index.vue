@@ -8,7 +8,7 @@ import {
 
 useSeoMeta({
   title: 'API Documentation',
-  description: 'Interactive REST API endpoint reference and live request tester for Syntecxhub NestJS backend.',
+  description: 'Interactive REST API endpoint reference and live request tester for Prism Studio NestJS backend.',
 });
 
 const config = useRuntimeConfig();

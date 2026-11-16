@@ -7,7 +7,7 @@ export interface ToastItem {
 }
 
 export const useToast = () => {
-  const toasts = useState<ToastItem[]>('syntecxhub-toasts', () => []);
+  const toasts = useState<ToastItem[]>('prism-toasts', () => []);
 
   const dismiss = (id: string) => {
     toasts.value = toasts.value.filter((item) => item.id !== id);

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-export const useUiStore = defineStore('syntecxhub-ui', () => {
+export const useUiStore = defineStore('prism-ui', () => {
   const sidebarCollapsed = ref(false);
   const mobileSidebarOpen = ref(false);
   const activeRoute = ref('/');
@@ -8,7 +8,7 @@ export const useUiStore = defineStore('syntecxhub-ui', () => {
 
   const currentOperator = reactive({
     name: 'Mahmoud Abdalrahman',
-    email: 'mahmoud.abdalrahman@syntecxhub.io',
+    email: 'mahmoud@prismdam.io',
     role: 'Principal Full-Stack Architect',
     avatar:
       'https://ui-avatars.com/api/?name=Mahmoud+Abdalrahman&background=0F172A&color=38BDF8&bold=true',

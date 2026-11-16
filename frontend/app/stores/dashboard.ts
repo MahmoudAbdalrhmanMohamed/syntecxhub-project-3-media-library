@@ -5,7 +5,7 @@ import type {
   DashboardStatsPayload,
 } from '#shared/types/api';
 
-export const useDashboardStore = defineStore('syntecxhub-dashboard', () => {
+export const useDashboardStore = defineStore('prism-dashboard', () => {
   const api = useApiClient();
   const stats = ref<DashboardStatsPayload | null>(null);
   const activity = ref<ActivityEvent[]>([]);

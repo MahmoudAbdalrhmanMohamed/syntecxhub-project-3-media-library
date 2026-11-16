@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: syntecxhub-p3-backend
+    name: prism-studio-backend
     runtime: node
     plan: free
     region: oregon
@@ -21,7 +21,7 @@ services:
         sync: false
 
   - type: web
-    name: syntecxhub-p3-frontend
+    name: prism-studio-frontend
     runtime: node
     plan: free
     region: oregon

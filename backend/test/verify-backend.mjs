@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 const BACKEND_ROOT = path.resolve(__dirname, '..');
 const PROJECT_ROOT = path.resolve(BACKEND_ROOT, '..');
 
-test('Project 3 (Syntecxhub Project 3 — Media Asset Library & Upload Pipeline) Standalone Structure & Strict TypeScript Verification', () => {
+test('Project 3 (Prism Studio — Digital Asset Management & Creative Media Pipeline) Standalone Structure & Strict TypeScript Verification', () => {
   const required = [
     'backend/package.json',
     'backend/tsconfig.json',

@@ -12,7 +12,7 @@ import {
 } from 'lucide-vue-next';
 
 useSeoMeta({
-  title: 'Asset Telemetry — Syntecxhub Studio',
+  title: 'Asset Telemetry — Prism Studio',
   description: 'Digital asset management telemetry, vector pipeline analytics, and storage quota utilization.',
 });
 
@@ -34,7 +34,7 @@ await useAsyncData('project3-dashboard', async () => {
         <div class="space-y-2">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 text-xs font-semibold">
             <Sparkles class="h-3.5 w-3.5 text-rose-500" />
-            <span>SYNTECXHUB STUDIO // DIGITAL ASSET ENGINE</span>
+            <span>PRISM STUDIO // DIGITAL ASSET ENGINE</span>
           </div>
           <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
             Media Storage &amp; Asset Intelligence

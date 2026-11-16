@@ -2,7 +2,7 @@
 const route = useRoute();
 const config = useRuntimeConfig();
 
-const siteUrl = 'https://studio.syntecxhub.com';
+const siteUrl = 'https://studio.prismdam.io';
 const currentUrl = computed(() => `${siteUrl}${route.path}`);
 
 const jsonLdData = computed(() => {
@@ -11,8 +11,8 @@ const jsonLdData = computed(() => {
     {
       '@context': 'https://schema.org',
       '@type': 'Organization',
-      name: 'Syntecxhub Enterprise',
-      url: 'https://syntecxhub.com',
+      name: 'Prism Creative Systems',
+      url: 'https://prismdam.io',
       logo: `${siteUrl}/favicon.svg`,
       sameAs: [
         'https://github.com/MahmoudAbdalrhmanMohamed/syntecxhub-project-3-media-library',
@@ -20,7 +20,7 @@ const jsonLdData = computed(() => {
       contactPoint: {
         '@type': 'ContactPoint',
         contactType: 'technical support',
-        email: 'studio@syntecxhub.com',
+        email: 'studio@prismdam.io',
       },
     },
 
@@ -28,7 +28,7 @@ const jsonLdData = computed(() => {
     {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      name: 'Syntecxhub Studio',
+      name: 'Prism Studio',
       url: siteUrl,
       potentialAction: {
         '@type': 'SearchAction',
@@ -41,7 +41,7 @@ const jsonLdData = computed(() => {
     {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
-      name: 'Syntecxhub Studio',
+      name: 'Prism Studio',
       operatingSystem: 'Cloud / Linux / Windows / macOS',
       applicationCategory: 'MultimediaApplication',
       softwareVersion: '1.0.0',
@@ -69,23 +69,23 @@ const jsonLdData = computed(() => {
       mainEntity: [
         {
           '@type': 'Question',
-          name: 'What is Syntecxhub Studio?',
+          name: 'What is Prism Studio?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Syntecxhub Studio is a creative digital asset management (DAM) engine and media ingestion pipeline designed for design teams, supporting vector SVG rendering, MIME validation, and cloud storage governance.',
+            text: 'Prism Studio is a creative digital asset management (DAM) engine and media ingestion pipeline designed for design teams, supporting vector SVG rendering, MIME validation, and cloud storage governance.',
           },
         },
         {
           '@type': 'Question',
-          name: 'What file types are supported by Syntecxhub Studio?',
+          name: 'What file types are supported by Prism Studio?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Syntecxhub Studio natively supports SVG (Scalable Vector Graphics), PNG, JPEG, WebP, and GIF images up to 5 MB per file with automatic MIME type classification and server-side safety checks.',
+            text: 'Prism Studio natively supports SVG (Scalable Vector Graphics), PNG, JPEG, WebP, and GIF images up to 5 MB per file with automatic MIME type classification and server-side safety checks.',
           },
         },
         {
           '@type': 'Question',
-          name: 'How is disk quota measured in Syntecxhub Studio?',
+          name: 'How is disk quota measured in Prism Studio?',
           acceptedAnswer: {
             '@type': 'Answer',
             text: 'Disk quota is calculated in real time by aggregating the byte size of all stored assets in MongoDB against a configurable storage threshold (defaulting to 100 MB free tier).',
@@ -137,9 +137,9 @@ useHead({
 <template>
   <!-- Invisible SEO semantic container for AI answer crawlers -->
   <div aria-hidden="true" class="sr-only">
-    <h2>Syntecxhub Studio Platform Overview</h2>
+    <h2>Prism Studio Platform Overview</h2>
     <p>
-      Syntecxhub Studio is an enterprise DAM platform providing high-speed vector
+      Prism Studio is an enterprise DAM platform providing high-speed vector
       asset ingestion, SVG rendering, and persistent media metadata management.
     </p>
   </div>

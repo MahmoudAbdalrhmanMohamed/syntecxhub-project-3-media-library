@@ -59,7 +59,7 @@ defineProps<{
     <div v-if="showText" class="min-w-0">
       <div class="flex items-center gap-1.5">
         <span class="truncate text-sm font-bold tracking-tight text-slate-900 dark:text-white block">
-          Syntecxhub
+          Prism
         </span>
         <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-rose-500/10 text-rose-400 border border-rose-500/30">
           DAM

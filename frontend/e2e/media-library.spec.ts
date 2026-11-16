@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import * as fs from 'fs';
 import * as path from 'path';
 
-test.describe('Syntecxhub Project 3 — Media Library & Asset Pipeline', () => {
+test.describe('Prism Studio — Media Library & Asset Pipeline', () => {
   const screenshotsDir = path.resolve(process.cwd(), 'e2e-screenshots');
 
   test.beforeAll(() => {
@@ -15,7 +15,7 @@ test.describe('Syntecxhub Project 3 — Media Library & Asset Pipeline', () => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
 
-    await expect(page).toHaveTitle(/Syntecxhub/);
+    await expect(page).toHaveTitle(/Prism/);
     const heading = page.locator('h1, h2').first();
     await expect(heading).toBeVisible();
 

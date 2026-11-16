@@ -1,5 +1,5 @@
 # ==============================================================================
-# Syntecxhub Studio — Robots Configuration
+# Prism Studio — Robots Configuration
 # Technical SEO & Generative Engine Optimization (GEO) Directives
 # ==============================================================================
 
@@ -9,8 +9,8 @@ Disallow: /api/
 Disallow: /_nuxt/
 
 # Sitemaps for Search Engines
-Sitemap: https://studio.syntecxhub.com/sitemap.xml
-Sitemap: https://syntecxhub-studio.vercel.app/sitemap.xml
+Sitemap: https://studio.prismdam.io/sitemap.xml
+Sitemap: https://prism-studio.vercel.app/sitemap.xml
 
 # LLM & Generative Engine Crawlers (Explicitly Allowed for GEO)
 User-agent: GPTBot

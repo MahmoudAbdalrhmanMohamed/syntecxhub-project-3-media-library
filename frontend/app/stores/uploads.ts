@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import type { PaginationMeta, UploadRecord } from '#shared/types/api';
 
-export const useUploadsStore = defineStore('syntecxhub-uploads', () => {
+export const useUploadsStore = defineStore('prism-uploads', () => {
   const api = useApiClient();
   const config = useRuntimeConfig();
 

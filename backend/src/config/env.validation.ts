@@ -28,7 +28,7 @@ class EnvironmentVariables {
 
   @IsOptional()
   @IsString()
-  MONGODB_URI: string = 'mongodb://localhost:27017/syntecxhub_platform';
+  MONGODB_URI: string = 'mongodb://localhost:27017/prism_media_db';
 
   @IsOptional()
   @IsString()
