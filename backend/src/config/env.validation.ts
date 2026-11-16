@@ -24,7 +24,7 @@ class EnvironmentVariables {
   @IsInt()
   @Min(1024)
   @Max(65535)
-  PORT: number = 4000;
+  PORT: number = 4003;
 
   @IsOptional()
   @IsString()
@@ -32,11 +32,11 @@ class EnvironmentVariables {
 
   @IsOptional()
   @IsString()
-  CORS_ORIGIN: string = 'http://localhost:3000';
+  CORS_ORIGIN: string = 'http://localhost:3003';
 
   @IsOptional()
   @IsString()
-  PUBLIC_BASE_URL: string = 'http://localhost:4000';
+  PUBLIC_BASE_URL: string = 'http://localhost:4003';
 
   @IsOptional()
   @IsInt()
@@ -45,7 +45,11 @@ class EnvironmentVariables {
 }
 
 export function validateEnvironment(config: Record<string, unknown>) {
-  const validatedConfig = plainToInstance(EnvironmentVariables, config, {
+  const cleanedConfig: Record<string, unknown> = { ...config };
+  if (!cleanedConfig.PORT || cleanedConfig.PORT === '') {
+    delete cleanedConfig.PORT;
+  }
+  const validatedConfig = plainToInstance(EnvironmentVariables, cleanedConfig, {
     enableImplicitConversion: true,
   });
   const errors = validateSync(validatedConfig, {
