@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import {
-  LayoutDashboard,
   Image as ImageIcon,
-  Settings,
+  Sparkles,
+  HardDrive,
   FileCode2,
   PanelLeftClose,
   PanelLeftOpen,
   Sun,
   Moon,
-  Sparkles,
+  Layers,
+  UploadCloud,
   X,
-  HardDrive,
-  FolderKanban,
+  Palette,
+  Compass,
 } from 'lucide-vue-next';
 
 const route = useRoute();
@@ -19,19 +20,19 @@ const uiStore = useUiStore();
 const colorMode = useColorMode();
 const uploadsStore = useUploadsStore();
 
-const navigationGroups = [
+const studioChannels = [
   {
-    groupTitle: 'STUDIO PIPELINE',
+    channelName: 'CREATIVE WORKSPACE',
     items: [
-      { label: 'Asset Telemetry', to: '/', icon: LayoutDashboard },
+      { label: 'Studio Intelligence', to: '/', icon: Sparkles, tag: 'ANALYTICS' },
       { label: 'Media Asset Vault', to: '/media', icon: ImageIcon, count: computed(() => uploadsStore.totalUploads || 8) },
     ],
   },
   {
-    groupTitle: 'INFRASTRUCTURE',
+    channelName: 'MEDIA ENGINE',
     items: [
-      { label: 'Storage & Quotas', to: '/settings', icon: Settings },
-      { label: 'CDN & Media API', to: '/api-docs', icon: FileCode2 },
+      { label: 'Storage & Compression', to: '/settings', icon: HardDrive, tag: 'BUFFER' },
+      { label: 'CDN Edge & OpenAPI', to: '/api-docs', icon: FileCode2, tag: 'FASTLY' },
     ],
   },
 ];
@@ -49,49 +50,64 @@ const toggleTheme = () => {
 <template>
   <div
     v-if="uiStore.mobileSidebarOpen"
-    class="fixed inset-0 z-40 bg-slate-950/70 backdrop-blur-sm lg:hidden"
+    class="fixed inset-0 z-40 bg-slate-950/80 backdrop-blur-md lg:hidden"
     @click="uiStore.closeMobileSidebar"
   />
 
   <aside
-    class="fixed inset-y-0 left-0 z-40 flex flex-col border-r border-slate-200/90 dark:border-rose-950/60 bg-white dark:bg-[#0B0612] transition-all duration-200 lg:sticky lg:top-0 lg:h-screen lg:shrink-0"
+    class="fixed inset-y-0 left-0 z-40 flex flex-col border-r border-rose-950/60 bg-[#08040F] transition-all duration-200 lg:sticky lg:top-0 lg:h-screen lg:shrink-0"
     :class="[
       uiStore.sidebarCollapsed ? 'w-20' : 'w-64',
       uiStore.mobileSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0',
     ]"
   >
-    <!-- Brand Header -->
+    <!-- Studio Brand Header -->
     <div
-      class="flex h-16 items-center border-b border-slate-200/90 dark:border-rose-950/60 transition-all duration-200"
+      class="flex h-16 items-center border-b border-rose-950/70 bg-[#06030B] transition-all duration-200"
       :class="uiStore.sidebarCollapsed ? 'justify-center px-2' : 'justify-between px-4'"
     >
       <NuxtLink
+        v-if="!uiStore.sidebarCollapsed"
         to="/"
-        class="flex items-center min-w-0"
-        :class="uiStore.sidebarCollapsed ? 'justify-center' : 'gap-3'"
-        :title="uiStore.sidebarCollapsed ? 'Prism DAM' : undefined"
+        class="flex items-center min-w-0 gap-3"
       >
         <BrandProjectLogo :size="'md'" />
-        <div v-if="!uiStore.sidebarCollapsed" class="min-w-0">
+        <div class="min-w-0">
           <div class="flex items-center gap-1.5">
-            <span class="truncate text-sm font-bold tracking-tight text-slate-900 dark:text-white block">
+            <span class="truncate text-sm font-bold tracking-tight text-white block">
               Prism
             </span>
-            <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-rose-500/10 text-rose-400 border border-rose-500/30">
-              DAM
+            <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold bg-gradient-to-r from-rose-500/20 to-fuchsia-500/20 text-rose-300 border border-rose-500/30">
+              STUDIO DAM
             </span>
           </div>
-          <p class="truncate text-[11px] text-slate-500 dark:text-slate-400 font-medium">
-            Studio &amp; Media Pipeline
-          </p>
+          <div class="flex items-center gap-1.5 mt-0.5">
+            <span class="h-1.5 w-1.5 rounded-full bg-rose-400 animate-pulse" />
+            <p class="truncate text-[10px] text-rose-300/80 font-medium">
+              CREATIVE PIPELINE // READY
+            </p>
+          </div>
         </div>
       </NuxtLink>
+
+      <!-- Collapsed State Header: Aperture Iris Emblem with Quick Rail Expand Toggle -->
+      <button
+        v-else
+        type="button"
+        class="group/rail flex h-11 w-11 items-center justify-center rounded-xl border border-rose-950/80 bg-[#0D0716] hover:border-rose-500 hover:bg-rose-950/70 transition-all cursor-pointer shadow-sm relative"
+        title="Expand Sidebar (Ctrl+B)"
+        aria-label="Expand Sidebar"
+        @click="uiStore.toggleSidebar"
+      >
+        <BrandProjectLogo :size="'sm'" class="transition-opacity duration-150 group-hover/rail:opacity-0" />
+        <PanelLeftOpen class="absolute h-5 w-5 text-rose-400 opacity-0 group-hover/rail:opacity-100 transition-opacity duration-150" />
+      </button>
 
       <!-- Desktop Collapse Button (Expanded State) -->
       <button
         v-if="!uiStore.sidebarCollapsed"
         type="button"
-        class="hidden lg:inline-flex rounded-lg p-1.5 text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-rose-950/60 transition-all cursor-pointer"
+        class="hidden lg:inline-flex rounded-lg p-1.5 text-slate-400 hover:text-white hover:bg-rose-950/60 transition-all cursor-pointer"
         title="Collapse Sidebar (Ctrl+B)"
         aria-label="Collapse Sidebar"
         @click="uiStore.toggleSidebar"
@@ -105,61 +121,98 @@ const toggleTheme = () => {
       </button>
     </div>
 
-    <!-- Grouped Navigation -->
-    <nav class="flex-1 space-y-6 overflow-y-auto px-3 py-5">
-      <div v-for="group in navigationGroups" :key="group.groupTitle" class="space-y-1">
-        <p
+    <!-- Format Support Strip (Expanded) -->
+    <div
+      v-if="!uiStore.sidebarCollapsed"
+      class="border-b border-rose-950/50 bg-rose-950/20 px-4 py-2 flex items-center justify-between text-[11px] text-rose-300/80"
+    >
+      <span class="flex items-center gap-1.5">
+        <Palette class="h-3 w-3 text-rose-400" />
+        <span>MIME: SVG • PNG • WEBP</span>
+      </span>
+      <span class="px-1.5 py-0.2 rounded bg-rose-500/10 text-rose-400 text-[10px] border border-rose-500/20">
+        LOSSLESS
+      </span>
+    </div>
+
+    <!-- Navigation List (Creative Studio Style) -->
+    <nav class="flex-1 space-y-6 overflow-y-auto px-3 py-4">
+      <div v-for="group in studioChannels" :key="group.channelName" class="space-y-1">
+        <div
           v-if="!uiStore.sidebarCollapsed"
-          class="px-3 pb-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-rose-300/50"
+          class="flex items-center justify-between px-3 pb-1.5"
         >
-          {{ group.groupTitle }}
-        </p>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-rose-300/60">
+            {{ group.channelName }}
+          </span>
+        </div>
 
         <NuxtLink
           v-for="item in group.items"
           :key="item.to"
           :to="item.to"
           :title="uiStore.sidebarCollapsed ? item.label : undefined"
-          class="group relative flex items-center rounded-xl text-sm font-medium transition-all duration-150"
+          class="group relative flex items-center rounded-xl text-xs sm:text-sm font-medium transition-all duration-150"
           :class="[
             uiStore.sidebarCollapsed ? 'justify-center w-12 h-10 mx-auto px-0' : 'gap-3 px-3 py-2.5',
             isActive(item.to)
-              ? 'bg-gradient-to-r from-rose-600 to-fuchsia-600 text-white shadow-sm shadow-rose-600/30 font-semibold'
-              : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-rose-950/40 hover:text-rose-600 dark:hover:text-rose-300',
+              ? 'bg-gradient-to-r from-rose-600 to-fuchsia-600 text-white shadow-md shadow-rose-600/25 border border-rose-400/30'
+              : 'text-slate-300 hover:bg-rose-950/40 hover:text-white',
           ]"
         >
-          <component :is="item.icon" class="h-4 w-4 shrink-0" />
+          <component
+            :is="item.icon"
+            class="h-4 w-4 shrink-0 transition-colors"
+            :class="isActive(item.to) ? 'text-white' : 'text-rose-400 group-hover:text-rose-300'"
+          />
           <span v-if="!uiStore.sidebarCollapsed" class="truncate flex-1">{{ item.label }}</span>
+          
+          <!-- Count badge -->
           <span
             v-if="!uiStore.sidebarCollapsed && item.count"
-            class="text-[11px] font-semibold px-2 py-0.5 rounded-full"
-            :class="isActive(item.to) ? 'bg-rose-700/80 text-white' : 'bg-slate-100 dark:bg-rose-950/80 text-slate-600 dark:text-rose-300'"
+            class="text-[10px] font-bold px-2 py-0.5 rounded-full"
+            :class="isActive(item.to) ? 'bg-rose-800 text-white' : 'bg-rose-950/80 text-rose-300 border border-rose-800/40'"
           >
-            {{ item.count.value }}
+            {{ item.count.value }} Assets
+          </span>
+
+          <!-- Tag badge -->
+          <span
+            v-else-if="!uiStore.sidebarCollapsed && item.tag"
+            class="text-[9px] font-mono px-1.5 py-0.5 rounded"
+            :class="isActive(item.to) ? 'bg-rose-800 text-white' : 'bg-rose-950/40 text-rose-400'"
+          >
+            {{ item.tag }}
           </span>
         </NuxtLink>
       </div>
     </nav>
 
-    <!-- Bottom Storage Quota Meter -->
-    <div class="border-t border-slate-200/90 dark:border-rose-950/60 p-3 space-y-2.5 bg-slate-50/50 dark:bg-[#090510]/50">
-      <div v-if="!uiStore.sidebarCollapsed" class="p-3 rounded-xl bg-rose-50/80 dark:bg-rose-950/40 border border-rose-200/60 dark:border-rose-900/50 space-y-2">
+    <!-- Bottom Studio Storage Meter & Actions -->
+    <div class="border-t border-rose-950/60 p-3 space-y-2.5 bg-[#05020A]">
+      <!-- Creative Format Breakdown Meter -->
+      <div v-if="!uiStore.sidebarCollapsed" class="p-2.5 rounded-xl bg-rose-950/30 border border-rose-900/40 space-y-2">
         <div class="flex items-center justify-between text-xs font-semibold">
-          <span class="text-rose-900 dark:text-rose-200 flex items-center gap-1.5">
-            <HardDrive class="h-3.5 w-3.5 text-rose-500" /> Storage Buffer
+          <span class="text-rose-200 flex items-center gap-1.5">
+            <HardDrive class="h-3.5 w-3.5 text-rose-500" /> Cloud Media Buffer
           </span>
-          <span class="font-mono text-[11px] text-rose-600 dark:text-rose-400">12%</span>
+          <span class="font-mono text-[11px] text-rose-400">12%</span>
         </div>
-        <div class="h-1.5 w-full bg-rose-200 dark:bg-rose-950/80 rounded-full overflow-hidden">
-          <div class="h-full bg-gradient-to-r from-rose-500 to-fuchsia-500 rounded-full w-[12%]" />
+        <div class="h-1.5 w-full bg-slate-900 rounded-full overflow-hidden">
+          <div class="h-full bg-gradient-to-r from-rose-500 via-fuchsia-500 to-purple-500 rounded-full w-[12%]" />
         </div>
-        <p class="text-[10px] text-slate-500 dark:text-rose-300/70 font-mono">12.4 MB of 100 MB used</p>
+        <div class="flex items-center justify-between text-[10px] text-slate-400">
+          <span>12.4 MB of 100 MB</span>
+          <NuxtLink to="/media" class="text-rose-400 hover:text-rose-300 font-medium">
+            Ingest &rarr;
+          </NuxtLink>
+        </div>
       </div>
 
       <!-- Rail Expand / Collapse Toggle -->
       <button
         type="button"
-        class="flex items-center rounded-xl border border-slate-200 dark:border-rose-950/80 bg-white dark:bg-[#120A1D] font-medium text-slate-700 dark:text-slate-300 hover:border-rose-400 hover:text-rose-400 transition-colors cursor-pointer"
+        class="flex items-center rounded-xl border border-rose-950/80 bg-[#0E061A] font-medium text-slate-300 hover:border-rose-500 hover:text-rose-400 transition-colors cursor-pointer"
         :class="
           uiStore.sidebarCollapsed
             ? 'w-12 h-10 mx-auto justify-center px-0'
@@ -172,14 +225,14 @@ const toggleTheme = () => {
         <span class="flex items-center gap-2">
           <PanelLeftOpen v-if="uiStore.sidebarCollapsed" class="h-4 w-4 text-rose-400 shrink-0" />
           <PanelLeftClose v-else class="h-4 w-4 shrink-0 text-slate-400" />
-          <span v-if="!uiStore.sidebarCollapsed">Collapse Sidebar</span>
+          <span v-if="!uiStore.sidebarCollapsed">Collapse Rail</span>
         </span>
-        <kbd v-if="!uiStore.sidebarCollapsed" class="hidden sm:inline font-mono text-[10px] text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-700">Ctrl+B</kbd>
+        <kbd v-if="!uiStore.sidebarCollapsed" class="hidden sm:inline font-mono text-[10px] text-slate-400 bg-rose-950/60 px-1.5 py-0.5 rounded border border-rose-900/60">Ctrl+B</kbd>
       </button>
 
       <button
         type="button"
-        class="flex items-center rounded-xl border border-slate-200 dark:border-rose-950/80 bg-white dark:bg-[#120A1D] font-medium text-slate-700 dark:text-slate-300 hover:border-rose-400 transition-colors cursor-pointer"
+        class="flex items-center rounded-xl border border-rose-950/80 bg-[#0E061A] font-medium text-slate-300 hover:border-rose-500 hover:text-rose-400 transition-colors cursor-pointer"
         :class="
           uiStore.sidebarCollapsed
             ? 'w-12 h-10 mx-auto justify-center px-0'
@@ -190,7 +243,7 @@ const toggleTheme = () => {
       >
         <span class="flex items-center gap-2">
           <Sun v-if="colorMode.value === 'dark'" class="h-4 w-4 text-amber-400 shrink-0" />
-          <Moon v-else class="h-4 w-4 text-rose-600 shrink-0" />
+          <Moon v-else class="h-4 w-4 text-rose-400 shrink-0" />
           <span v-if="!uiStore.sidebarCollapsed">{{ colorMode.value === 'dark' ? 'Light Mode' : 'Dark Mode' }}</span>
         </span>
       </button>
